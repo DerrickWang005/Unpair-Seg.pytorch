@@ -3,8 +3,7 @@
 
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-    content="Uni-OVSeg: Open-Vocabulary Segmentation with Unpaired Mask-Text Supervision">
+  <meta name="description" content="Uni-OVSeg: Open-Vocabulary Segmentation with Unpaired Mask-Text Supervision">
   <meta name="keywords" content="Open-Vocabulary Segmentation, Weakly-supervised learning">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Open-Vocabulary Segmentation with Unpaired Mask-Text Supervision</title>
@@ -47,23 +46,25 @@
       <div class="container is-max-desktop">
         <div class="columns is-centered">
           <div class="column has-text-centered">
-            <h1 class="title is-1 publication-title">Uni-OVSeg: Open-Vocabulary Segmentation with Unpaired Mask-Text Supervision</h1>
+            <h1 class="title is-1 publication-title">Uni-OVSeg: Open-Vocabulary Segmentation with Unpaired Mask-Text
+              Supervision</h1>
             <div class="is-size-5 publication-authors">
               <span class="author-block">
                 <a href="https://derrickwang005.github.io">Zhaoqing Wang</a><sup>1,4</sup> </span>&nbsp;&nbsp;
-                <a href="https://xiaoboxia.github.io">Xiaobo Xia</a><sup>1</sup> </span>&nbsp;&nbsp;
-                <a href="https://czyczyyzc.github.io/">Ziye Chen</a><sup>2</sup>&nbsp;&nbsp;
-                Xiao He<sup>4</sup>&nbsp;&nbsp;
-                <a href="https://scholar.google.com/citations?user=fWDoWsQAAAAJ">Yandong Guo</a><sup>4</sup>&nbsp;&nbsp;
-                <a href="https://mingming-gong.github.io/">Mingming Gong</a><sup>2,3😎</sup>&nbsp;&nbsp;
-                <a href="https://tongliang-liu.github.io">Tongliang Liu</a><sup>1,😎</sup>
+              <a href="https://xiaoboxia.github.io">Xiaobo Xia</a><sup>1</sup> </span>&nbsp;&nbsp;
+              <a href="https://czyczyyzc.github.io/">Ziye Chen</a><sup>2</sup>&nbsp;&nbsp;
+              Xiao He<sup>4</sup>&nbsp;&nbsp;
+              <a href="https://scholar.google.com/citations?user=fWDoWsQAAAAJ">Yandong Guo</a><sup>4</sup>&nbsp;&nbsp;
+              <a href="https://mingming-gong.github.io/">Mingming Gong</a><sup>2,3😎</sup>&nbsp;&nbsp;
+              <a href="https://tongliang-liu.github.io">Tongliang Liu</a><sup>1,😎</sup>
               </span>
             </div>
 
             <div class="is-size-5 publication-authors">
               <span class="author-block"><sup>1</sup>The University of Sydney</span>&nbsp;&nbsp;
               <span class="author-block"><sup>2</sup>The University of Melbourne</span> &nbsp;&nbsp;
-              <span class="author-block"><sup>3</sup>Mohamed bin Zayed University of Artificial Intelligence</span>&nbsp;&nbsp;
+              <span class="author-block"><sup>3</sup>Mohamed bin Zayed University of Artificial
+                Intelligence</span>&nbsp;&nbsp;
               <span class="author-block"><sup>4</sup>AI2Robotics</span>
             </div>
             <div class="is-size-5 publication-authors">
@@ -72,7 +73,8 @@
             <div class="column has-text-centered">
               <div class="publication-links">
                 <span class="link-block">
-                  <a href="https://arxiv.org/pdf/2402.08960.pdf" class="external-link button is-normal is-rounded is-dark">
+                  <a href="https://arxiv.org/pdf/2402.08960.pdf"
+                    class="external-link button is-normal is-rounded is-dark">
                     <span class="icon">
                       <i class="ai ai-arxiv"></i>
                     </span>
@@ -91,86 +93,76 @@
                 </span>
               </div>
             </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </section>
-
-  <section class="section">
-    <div class="container is-max-desktop">
-      <!-- Abstract. -->
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          <h2 class="title is-3">Overview</h2>
-          <div class="content has-text-justified">
-            <p>
-              In-context learning is a promising paradigm that utilizes In-context examples as prompts for the predictions 
-              of large language models. These prompts are crucial for achieving strong performance. However, since the 
-              prompts need to be sampled from a large volume of annotated examples, finding the right prompt may result 
-              in high annotation costs. To address this challenge, this paper introduces an influence-driven selective 
-              annotation method that aims to minimize annotation costs while improving the quality of In-context examples. 
-            </p>
-            <p>
-              The essence of our method is to select a pivotal subset from a large-scale unlabeled data pool to annotate 
-              for the subsequent sampling of prompts. Specifically, a directed graph is first constructed to represent 
-              unlabeled data. Afterward, the influence of candidate unlabeled subsets is quantified with a diffusion 
-              process. A simple yet effective greedy algorithm for unlabeled data selection is lastly introduced. It 
-              iteratively selects the data if it provides a maximum marginal gain with respect to quantified influence.
-            </p>
-            <p>
-              Compared with previous efforts on selective annotations, our influence-driven method works in an 
-              end-to-end manner, avoids an intractable explicit balance between data diversity and representativeness, 
-              and enjoys theoretical support. Experiments confirm the superiority of the proposed method on various 
-              benchmarks, achieving better performance under lower time consumption during subset selection.
-            </p>
           </div>
         </div>
       </div>
     </div>
   </section>
-
-    <section class="section">
-      <div class="container">
-    <div class="columns is-centered">
-      <div class="container is-max-desktop content">
-        <h2 class="title is-3">Motivation</h2>
-  
-        <div class="content has-text-justified">
-          <p>Visualization of the <a href="https://ieeexplore.ieee.org/abstract/document/8295265">information diffusion process</a> of two subsets with equal sizes for SST-5 datasets. 
-          We can observe that: the subset with high influence can achieve better performance by influencing a larger group of examples in the unlabeled data pool compared to the subset with low influence.
-          </p>
-          <p>
-            Based on this, we then propose to quantify the influence of each candidate unlabeled subset in the
-            constructed graph, through a classic independent-cascade diffusion mode.
-          </p>
-          <p></p>
-            <img src="./static/images/intro.png" id="aa" />
-            <p></p>
-        </div>
-      </div>
-    </div>
-      </div>
-    </section>
 
   <section class="section">
     <div class="container">
-  <div class="columns is-centered">
-    <div class="container is-max-desktop content">
-      <h2 class="title is-3">Method</h2>
-
-      <div class="content has-text-justified">
-        <p>
-          The procedure aims to quantify the influence of each subset of In-context examples. In this procedure, we
-          start with a subset of examples (the red points in (a)). Gradually, the successors of this subset are activated based on
-          the edge weight and a random number sampled from 0 to 1. From (a) to (d). The influence of the subset is determined
-          by the number of points that have been activated.
-        </p>
-          <img src="./static/images/overview.png" id="img_comparison" />
-          
+      <div class="columns is-centered">
+        <div class="container is-max-desktop content">
+          <h2 class="title is-3">Motivation</h2>
+          <div class="content has-text-justified">
+            <figure>
+              <img src="./static/images/teaser.png" id="aa" />
+              <figcaption>Figure 1. The proposed Uni-OVSeg framework learns open-vocabulary segmentation with unpaired mask-text supervision. Compared to
+                the labour-intensive image-mask-text annotations, independent image-mask and image-text pairs are easier to collect. With one suite of
+                weights, given different visual prompts (e.g., points and boxes), Uni-OVSeg can segment and categorise various objects and stuff from an
+                open set of vocabulary in the real world.
+                </figcaption>
+            </figure>
+            <p>Cutting-edge approaches in open-vocabulary segmentation typically leverage supervision with triplet annotations
+              that are composed of images, masks, and corresponding texts [1, 2].
+              It is worth noting that strict alignment between each mask and text results in an expensive annotation cost.
+              To mitigate this, some weakly-supervised methods propose using only text supervision [3, 4].
+            </p>
+            <p>
+              However, learning with this supervision, the model falls short in capturing complex spatial details,
+              which is suboptimal for dense prediction.
+              Furthermore, this type of supervision lacks positional information, making the model difficult to
+              distinguish different instances with the same semantic class.
+              These issues severely limit the versatility and segmentation performance of existing weakly-supervised methods.
+            </p>
+            <p>
+              As shown in Figure 1., we propose an advanced weakly-supervised open-vocabulary segmentation framework,
+              named Uni-OVSeg, to reduce the annotation expense while significantly enhancing performance.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="container is-max-desktop content">
+          <h2 class="title is-3">Method</h2>
+          <div class="content has-text-justified">
+            <figure>
+              <img src="./static/images/architecture.png" id="aa" />
+              <figcaption>Figure 2. Overview of the Uni-OVSeg framework.
+                This framework consists of feature extraction, mask generation, and mask-text alignment.
+                A frozen CLIP model and prompt encoder are used for image and text feature extraction and prompt encoding, respectively.
+                We employs a mask and pixel decoder for binary mask prediction.
+                A mask-text bipartite matching is designed to exploit confident mask-entity pairs.
+                Visual prompts using boxes are omitted for simplicity.</figcaption>
+            </figure>
+            <p>
+              On a macro level, as illustrated in Figure 2., the proposed Uni-OVSeg contains a CLIP model to extract features of both images and text descriptions.
+              With the image-mask pairs, a branch of mask generation, including a visual prompt encoder, a pixel decoder and a mask decoder,
+              is employed to predict a set of binary masks of an input image. With the image-text pairs,
+              mask-text bipartite matching is used to exploit confident pairs between predicted masks and entities in text descriptions.
+              Afterward, we adopt a multi-scale feature adapter to enhance the mask-wise visual embeddings,
+              which are further aligned with associated entity embeddings based on the confident pairs.
+              Finally, we perform open-vocabulary segmentation with the above-mentioned parts.
+              More details can be found in our paper.
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -183,32 +175,91 @@
 
           <!-- Interpolating. -->
           <div class="content has-text-justified">
+            <h3 class="title is-4">1. Open-vocabulary semantic segmentation performance</h3>
+            <figure>
+              <figcaption>Table 1. Open-vocabulary semantic segmentation performance.
+                We mainly compare with the fully-supervised and weakly-supervised methods.
+                “COCO S.”, “COCO P.” and “COCO C.” denote the COCO stuff, panoptic and caption datasets.
+                “O365” denotes the Object 365 dataset. “M. 41M” denotes the merged 41M image dataset.
+                We report mIoU for all datasets.
+              </figcaption>
+              <img src="./static/images/semseg.png" id="aa" />
+            </figure>
             <p>
-              The performance of our method and baselines on 9 different datasets with an annotation budget of 100 and
-              18. We use similar-based prompt retrieval for all methods and report the average results with 3 different runs for each
-              method. We can observe that our method works better than Random and Vote-k in almost all cases (17/18) under two
-              annotation budgets. The best result in each case is bolded.
-            </p>
-            <img src="./static/images/result.png" id="img_comparison" />
-            <p>
+              As demonstrated in Table 1., we compare our method to previous works across a range of benchmarks,
+              including ADE20K (encompassing both 150 and 847 class variants), PASCAL Context (459 and 59 class variants), PASCAL VOC (with 20 and 21 class categories), and Cityscapes.
+              Compared to weakly-supervised methods, Uni-OVSeg exhibits remarkable performance improvements across all evaluated datasets.
+              Specifically, in the more challenging datasets of PASCAL Context-459, Uni-OVSeg not only surpasses its weakly-supervised counterparts but also outperforms the cutting-edge fully-supervised methods,
+              e.g., FC-CLIP. This is indicative of Uni-OVSeg's superior capability in categorizing a diverse array of semantic classes.
+              Furthermore, in the PASCAL VOC benchmarks (20 and 21 classes), Uni-OVSeg demonstrates a substantial enhancement over state-of-the-art weakly-supervised methods,
+              achieving improvements of 18.3% and 12.2% mIoU, respectively, which demonstrates our Uni-OVSeg captures fine-grained spatial structures.
+              These results elevate the practical applicability of weakly-supervised open-vocabulary segmentation to new heights.
             </p>
           </div>
+
           <div class="content has-text-justified">
+            <h3 class="title is-4">2. Open-vocabulary panoptic segmentation performance</h3>
+            <figure>
+              <figcaption>Table 2. Open-vocabulary panoptic segmentation performance.
+                We mainly compare with the fully-supervised and unsupervised methods.
+                “COCO P.” denotes the COCO panoptic datasets. “COCO” denotes the COCO image dataset. “IN 1K” denotes the ImageNet-1K image dataset.
+                We report PQ, SQ and RQ for all datasets.
+              </figcaption>
+              <img src="./static/images/panoseg.png" id="aa" />
+            </figure>
             <p>
-              We also conduct experiments to investigate the correlation between subset influence and its corresponding In-context  
-              learning performance. Specifically, we randomly select a collection of example subsets from a large unlabeled data pool.
-              We then evaluate each subset as a prompt and record its performance and influence in the constructed graph, 
-              resulting in a set of influence performance pairs. We visualize the performance of subsets in each influence level. 
-              Our analysis reveals that subsets with larger influence levels could achieve better performance.
-            </p>
-            <img src="./static/images/ablation.png" id="img_comparison" />
-            <p>
+              As demonstrated in Table 2., for open-vocabulary panoptic segmentation, we zero-shot evaluate our model on the COCO, ADE20K, and Cityscapes datasets.
+              Existing weakly-supervised methods only use text supervision, which causes a challenge to discriminate different instances with the same semantic class.
+              To the best of our knowledge, we are the first to learn open-vocabulary panoptic segmentation with weak supervision.
+              Compared to unsupervised methods, we obviously outperform U2Seg by 1.9% PQ, 1.5%SQ, and 4.4% RQ on COCO datasets.
+              Unfortunately, our used image-mask pairs contain multiple granularity masks, such as object-wise and part-wise masks,
+              which is different with the panoptic segmentation datasets. This discrepancy leads to a number of false positive results, limiting our performance.
             </p>
           </div>
+
+          <div class="content has-text-justified">
+            <h3 class="title is-4">3. Promptable segmentation performance</h3>
+            <figure>
+              <img src="./static/images/point_seg1.png" id="aa" />
+              <figcaption>Figure 3. Point-promptable segmentation performance. We compare our method with SAM-ViT/L on a wide range of datasets.
+                Given a 20 × 20 point grid as visual prompt, we select the output masks with max IoU by calculating the IoU with the ground-truth masks.
+                We report 1-pt IoU for all datasets.
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="./static/images/box_seg1.png" id="aa" />
+              <figcaption>Figure 4. Box-promptable segmentation performance. We compare our method with SAM-ViT/L on a wide range of datasets.
+                Given a ground-truth box as the visual prompt, we select the output masks with max IoU by calculating the IoU with the ground-truth
+                masks. We report 1-pt IoU for all datasets.
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="./static/images/point_seg2.png" id="aa" />
+              <figcaption>Figure 5. Point-promptable segmentation performance. We compare our method with SAM-ViT/L on the SegInW datasets.
+                Given a 20 × 20 point grid as a visual prompt, we select the output masks with max IoU by calculating the IoU with the ground-truth
+                masks. We report 1-pt IoU for all datasets.                
+              </figcaption>
+            </figure>
+            <figure>
+              <img src="./static/images/box_seg2.png" id="aa" />
+              <figcaption>Figure 6. Box-promptable segmentation performance. We compare our method with SAM-ViT/L on the SegInW datasets.
+                Given a ground-truth box as the visual prompt, we select the output masks with max IoU by calculating the IoU with the ground-truth
+                masks. We report 1-pt IoU for all datasets.
+              </figcaption>
+            </figure>
+            <p>
+              To evaluate the segmentation quality of Uni-OVSeg in scenarios involving interactive point and box prompts,
+              we conduct comparative analyses with the SAM-ViT/L model across a range of datasets from diverse domains.
+              For visual prompts, we implement a uniform 20 × 20 point grid as the interactive point prompt and utilise the actual bounding boxes as box prompts.
+              The segmentation performance is measured using the 1-pt IoU (Oracle) metric across all datasets.
+              We report results in Figures 3-6.
+            </p>
+          </div>
+
         </div>
       </div>
-          <br />
-          <!--/ Interpolating. -->
+      <br />
+      <!--/ Interpolating. -->
       <!--/ Animation. -->
 
 
@@ -219,16 +270,21 @@
 
           <div class="content has-text-justified">
             <p>
-              R1.<a href="https://arxiv.org/abs/2209.01975"> Selective Annotation Makes Language Models Better Few-Shot Learners</a>.
+              1.<a href="http://openaccess.thecvf.com/content/CVPR2022/papers/Wang_CRIS_CLIP-Driven_Referring_Image_Segmentation_CVPR_2022_paper.pdf"> Cris: Clip-driven referring image segmentation</a>.
             </p>
             <p>
-              R2.<a href="https://ieeexplore.ieee.org/abstract/document/8295265"> Influence Maximization on Social Graphs: A Survey</a>.
+              2.<a href="https://proceedings.neurips.cc/paper_files/paper/2023/file/661caac7729aa7d8c6b8ac0d39ccbc6a-Paper-Conference.pdf"> Convolutions die hard: Open-vocabulary segmentation with single frozen convolutional clip</a>.
+            </p>
+            <p>
+              3.<a href="https://openaccess.thecvf.com/content/CVPR2022/papers/Xu_GroupViT_Semantic_Segmentation_Emerges_From_Text_Supervision_CVPR_2022_paper.pdf"> Groupvit: Semantic segmentation emerges from text supervision</a>.
+            </p>
+            <p>
+              4.<a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Xu_Learning_Open-Vocabulary_Semantic_Segmentation_Models_From_Natural_Language_Supervision_CVPR_2023_paper.pdf"> Learning open-vocabulary semantic segmentation models from natural language supervision</a>.
             </p>
           </div>
         </div>
       </div>
       <!--/ Concurrent Work. -->
-
     </div>
   </section>
 
@@ -237,13 +293,13 @@
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
       <pre><code>
-@article{zhang2023ide,
-  title={IDEAL: Influence-Driven Selective Annotations Empower In-context Learners in Large Language Models},
-  author={Zhang, Shaokun and Xia, Xiaobo and Wang, Zhaoqing and Chen, Ling-Hao and Liu, Jiale and Wu, Qingyun and Liu, Tongliang},
-  journal={arXiv preprint arXiv:2310.10873},
-  year={2023}
+@article{wang2024open,
+  title={Open-Vocabulary Segmentation with Unpaired Mask-Text Supervision},
+  author={Wang, Zhaoqing and Xia, Xiaobo and Chen, Ziye and He, Xiao and Guo, Yandong and Gong, Mingming and Liu, Tongliang},
+  journal={arXiv preprint arXiv:2402.08960},
+  year={2024}
 }
-</code></pre>
+      </code></pre>
     </div>
   </section>
 
