@@ -12,8 +12,10 @@ from torch.cuda.amp import autocast
 from torch.nn import functional as F
 from torch.nn.init import normal_
 
-from ..transformer_decoder.position_encoding import (PositionEmbeddingRandom,
-                                                     PositionEmbeddingSine)
+from ..transformer_decoder.position_encoding import (
+    PositionEmbeddingRandom,
+    PositionEmbeddingSine,
+)
 from .ops.modules import MSDeformAttn
 from ..utils import LayerNorm2d
 
@@ -87,7 +89,7 @@ class MSDeformAttnTransformerEncoderOnly(nn.Module):
                 nn.init.xavier_uniform_(p)
         for m in self.modules():
             if isinstance(m, MSDeformAttn):
-            # if isinstance(m, FlashDeformAttn):
+                # if isinstance(m, FlashDeformAttn):
                 m._reset_parameters()
         normal_(self.level_embed)
 

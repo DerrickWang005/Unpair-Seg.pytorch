@@ -63,7 +63,7 @@ def pairwise_iou(masks1: torch.Tensor, masks2: torch.Tensor):
 def pairwise_inner(masks1: torch.Tensor, masks2: torch.Tensor):
     masks1 = masks1.flatten(1)
     masks2 = masks2.flatten(1)
-    
+
     inter = torch.einsum("nc,mc->nm", masks1, masks2)
     inner = (inter + 1e-6) / (masks2.sum(dim=1) + 1e-6)
 
@@ -113,8 +113,9 @@ def inner_nms(scores, iou_matrix, ratio_matrix, iou_threshold=0.7, ratio_thresho
         current_ratio = ratio_matrix[i, order[1:]]
 
         # 筛选出与当前mask IOU小于阈值的mask，它们不会被抑制
-        remain_inds = torch.nonzero((current_iou < iou_threshold) & \
-            (current_ratio < ratio_threshold)).squeeze(dim=1)
+        remain_inds = torch.nonzero(
+            (current_iou < iou_threshold) & (current_ratio < ratio_threshold)
+        ).squeeze(dim=1)
 
         # 更新order，只保留那些没有被当前mask抑制的mask的索引
         order = order[remain_inds + 1]  # 加1因为iou_matrix中排除了自己
@@ -163,7 +164,9 @@ def mask_nms(
     else:
         iou_matrix = pairwise_iou(masks, masks)
         inner_matrix = pairwise_inner(masks, masks)
-        keep = inner_nms(scores, iou_matrix, inner_matrix, iou_threshold, inner_threshold)
+        keep = inner_nms(
+            scores, iou_matrix, inner_matrix, iou_threshold, inner_threshold
+        )
 
     return keep
 

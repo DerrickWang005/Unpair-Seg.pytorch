@@ -8,12 +8,7 @@ except:
     pass
 import argparse
 from time import time
-from tqdm import tqdm
 from glob import glob
-import copy
-import itertools
-import json
-import logging
 import os
 import torch
 import torch.nn.functional as F
@@ -31,12 +26,14 @@ from utils import calculate_stability_score, remove_small_regions
 def get_parser():
     parser = argparse.ArgumentParser(description="Uni-OVSeg inference demo")
     parser.add_argument(
-        "-c", "--config-file",
+        "-c",
+        "--config-file",
         metavar="FILE",
         help="path to config file",
     )
     parser.add_argument(
-        "-i", "--input",
+        "-i",
+        "--input",
         nargs="+",
         help="A list of space separated input images; "
         "or a single glob pattern such as 'directory/*.jpg'",
@@ -77,7 +74,7 @@ if __name__ == "__main__":
         assert args.input, "The input path(s) was not found"
 
     args.input.sort()
-    os.makedirs(os.path.join(cfg.OUTPUT_DIR, 'vis'), exist_ok=True)
+    os.makedirs(os.path.join(cfg.OUTPUT_DIR, "vis"), exist_ok=True)
     for path in args.input:
         start_time = time()
         result = predictor(path)
@@ -91,9 +88,7 @@ if __name__ == "__main__":
             )
         )
         # filter - stablility
-        stable_score = calculate_stability_score(
-            prediction, 0.5, 0.1
-        )
+        stable_score = calculate_stability_score(prediction, 0.5, 0.1)
         keep = stable_score > 0.92
         prediction = prediction[keep]
         # filter - small disconnected regions and holes
@@ -130,9 +125,5 @@ if __name__ == "__main__":
             alpha=0.5,
         )
         vis = vis.get_output()
-        vis.save(
-            os.path.join(
-                cfg.OUTPUT_DIR, 'vis', os.path.basename(path)
-            )
-        )
+        vis.save(os.path.join(cfg.OUTPUT_DIR, "vis", os.path.basename(path)))
         del vis

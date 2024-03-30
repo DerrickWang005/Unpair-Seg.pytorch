@@ -12,10 +12,8 @@ from torch.nn import functional as F
 
 from ..backbone.clip import build_main_backbone
 from ...utils import (
-    VILD_TEMPLATES,
-    get_classification_logits_fcclip,
     mask_nms,
-    sem_seg_postprocess
+    sem_seg_postprocess,
 )
 from ..pixel_decoder import build_pixel_decoder
 from ..transformer_decoder import build_transformer_decoder
@@ -117,14 +115,16 @@ class UniOVSeg_S1(nn.Module):
             ],
             device=self.device,
         )
-        aspect_ratio = (self.input_size[0] - 1.) / sizes.amax(dim=-1)
+        aspect_ratio = (self.input_size[0] - 1.0) / sizes.amax(dim=-1)
         aspect_ratio = aspect_ratio.unsqueeze(1)
         scaled_sizes = sizes * aspect_ratio
         sizes = sizes + 1
         return images, sizes, scaled_sizes
 
     @staticmethod
-    def prepare_points(pts_per_side: Tuple[int, int], scaled_size: torch.Tensor, device: torch.device):
+    def prepare_points(
+        pts_per_side: Tuple[int, int], scaled_size: torch.Tensor, device: torch.device
+    ):
         pts_side_x, pts_side_y = pts_per_side
         offset_x = 1 / (2 * pts_side_x)
         offset_y = 1 / (2 * pts_side_y)
@@ -151,9 +151,7 @@ class UniOVSeg_S1(nn.Module):
         ) = self.sem_seg_head["pixel_decoder"].forward_features(features)
 
         # slice forward for memory-efficient inference
-        points = self.prepare_points(
-            self.pts_per_side_test, scaled_sizes, self.device
-        )
+        points = self.prepare_points(self.pts_per_side_test, scaled_sizes, self.device)
         points = torch.split(points.squeeze(0), 100, dim=0)
         mask_pred_results, iou_pred_results = [], []
         for point in points:

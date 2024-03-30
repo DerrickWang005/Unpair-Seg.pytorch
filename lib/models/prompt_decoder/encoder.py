@@ -4,7 +4,10 @@ import torch.nn as nn
 
 from detectron2.config import configurable
 from detectron2.utils.registry import Registry
-from ..transformer_decoder.position_encoding import PositionEmbeddingSine, PositionEmbeddingRandom
+from ..transformer_decoder.position_encoding import (
+    PositionEmbeddingSine,
+    PositionEmbeddingRandom,
+)
 
 
 PROMPT_ENCODER_REGISTRY = Registry("PROMPT_ENCODER")
@@ -202,14 +205,10 @@ class PromptEncoder2(nn.Module):
         attr_embed = self.attr_emb(torch.ones_like(point_embed[:, :, 0]).long())
         type_embed = self.point_emb.clone()
         content_embed = feat.unsqueeze(1)
-        task_embed = (
-            point_embed + type_embed + content_embed + attr_embed
-        )
+        task_embed = point_embed + type_embed + content_embed + attr_embed
 
         output_embed = self.mask_emb.repeat(N, 1, 1)[:, -2:]  # 1 x 4 x C
-        task_embed = torch.cat(
-            [task_embed, output_embed], dim=1
-        )  # N x (1 + 4) x C
+        task_embed = torch.cat([task_embed, output_embed], dim=1)  # N x (1 + 4) x C
         return task_embed, task_embed
 
     def _embed_multi_point(
@@ -239,9 +238,7 @@ class PromptEncoder2(nn.Module):
         task_embed = box_embed + corner_embed + point_embed + content_embed
 
         output_embed = self.mask_emb.repeat(N, 1, 1)[:, :1]  # 1 x 1 x C
-        task_embed = torch.cat(
-            [task_embed, output_embed], dim=1
-        )  # N x (2 + 1) x C
+        task_embed = torch.cat([task_embed, output_embed], dim=1)  # N x (2 + 1) x C
         return task_embed, task_embed
 
     def forward(
