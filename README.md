@@ -14,7 +14,7 @@ It is a weakly supervised open-vocabulary segmentation framework that leverages 
   PyTorch version matches that is required by Detectron2.
 - Detectron2: follow [Detectron2 installation instructions](https://detectron2.readthedocs.io/tutorials/install.html).
 - OpenCV is optional but needed by demo and visualization
-- please check install.sh for other dependencies
+- please check `install.sh` for other dependencies
 
 
 ## Inference
