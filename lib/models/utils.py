@@ -18,18 +18,18 @@ def _get_activation_fn(activation):
     raise RuntimeError(f"activation should be relu/gelu, not {activation}.")
 
 
-class LoRALayer():
+class LoRALayer:
     def __init__(
-        self, 
-        r: int, 
-        lora_alpha: int, 
+        self,
+        r: int,
+        lora_alpha: int,
         lora_dropout: float,
         merge_weights: bool,
     ):
         self.r = r
         self.lora_alpha = lora_alpha
         # Optional dropout
-        if lora_dropout > 0.:
+        if lora_dropout > 0.0:
             self.lora_dropout = nn.Dropout(p=lora_dropout)
         else:
             self.lora_dropout = lambda x: x
@@ -41,19 +41,24 @@ class LoRALayer():
 class Linear(nn.Linear, LoRALayer):
     # LoRA implemented in a dense layer
     def __init__(
-        self, 
-        in_features: int, 
-        out_features: int, 
-        r: int = 0, 
-        lora_alpha: int = 1, 
-        lora_dropout: float = 0.,
-        fan_in_fan_out: bool = False, # Set this to True if the layer to replace stores weight like (fan_in, fan_out)
+        self,
+        in_features: int,
+        out_features: int,
+        r: int = 0,
+        lora_alpha: int = 1,
+        lora_dropout: float = 0.0,
+        fan_in_fan_out: bool = False,  # Set this to True if the layer to replace stores weight like (fan_in, fan_out)
         merge_weights: bool = True,
-        **kwargs
+        **kwargs,
     ):
         nn.Linear.__init__(self, in_features, out_features, **kwargs)
-        LoRALayer.__init__(self, r=r, lora_alpha=lora_alpha, lora_dropout=lora_dropout,
-                           merge_weights=merge_weights)
+        LoRALayer.__init__(
+            self,
+            r=r,
+            lora_alpha=lora_alpha,
+            lora_dropout=lora_dropout,
+            merge_weights=merge_weights,
+        )
 
         self.fan_in_fan_out = fan_in_fan_out
         # Actual trainable parameters
@@ -69,7 +74,7 @@ class Linear(nn.Linear, LoRALayer):
 
     def reset_parameters(self):
         nn.Linear.reset_parameters(self)
-        if hasattr(self, 'lora_A'):
+        if hasattr(self, "lora_A"):
             # initialize B the same way as the default for nn.Linear and A to zero
             # this is different than what is described in the paper but should not affect performance
             nn.init.kaiming_uniform_(self.lora_A, a=math.sqrt(5))
@@ -78,6 +83,7 @@ class Linear(nn.Linear, LoRALayer):
     def train(self, mode: bool = True):
         def T(w):
             return w.transpose(0, 1) if self.fan_in_fan_out else w
+
         nn.Linear.train(self, mode)
         if mode:
             if self.merge_weights and self.merged:
@@ -95,9 +101,14 @@ class Linear(nn.Linear, LoRALayer):
     def forward(self, x: torch.Tensor):
         def T(w):
             return w.transpose(0, 1) if self.fan_in_fan_out else w
+
         if self.r > 0 and not self.merged:
-            result = F.linear(x, T(self.weight), bias=self.bias)            
-            result += (self.lora_dropout(x) @ self.lora_A.transpose(0, 1) @ self.lora_B.transpose(0, 1)) * self.scaling
+            result = F.linear(x, T(self.weight), bias=self.bias)
+            result += (
+                self.lora_dropout(x)
+                @ self.lora_A.transpose(0, 1)
+                @ self.lora_B.transpose(0, 1)
+            ) * self.scaling
             return result
         else:
             return F.linear(x, T(self.weight), bias=self.bias)
@@ -291,14 +302,14 @@ class CrossAttention(nn.Module):
         q = self.q(q).reshape(B, N, self.num_heads, self.head_dim).permute(0, 2, 1, 3)
         k = self.k(k).reshape(B, M, self.num_heads, self.head_dim).permute(0, 2, 1, 3)
         v = self.v(v).reshape(B, M, self.num_heads, self.head_dim).permute(0, 2, 1, 3)
-        
+
         x = F.scaled_dot_product_attention(
             q,
             k,
             v,
             dropout_p=self.attn_drop if self.training else 0.0,
             attn_mask=~attn_mask if attn_mask is not None else None,
-            scale=self.scale
+            scale=self.scale,
         )
 
         x = x.transpose(1, 2).reshape(B, N, C)

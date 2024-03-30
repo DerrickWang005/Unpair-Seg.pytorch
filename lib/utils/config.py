@@ -9,7 +9,7 @@ def add_ovseg_config(cfg):
     cfg.INPUT.DATASET_URL = [
         ["/datasets/SA-1B/split1-2m", "datadict_0p5.parquet"],
     ]
-    cfg.INPUT.DATASET_JSON = '/vepfs/home/wangzhaoqing/uni-ovseg/sa1b.json'
+    cfg.INPUT.DATASET_JSON = "/vepfs/home/wangzhaoqing/uni-ovseg/sa1b.json"
     cfg.INPUT.FEW_SHOT_JSON = [
         "/workspace/pretrains/coco_fewshot/openvocab_coco_2017_train_panoptic_with_sem_seg_0.1.json",
     ]
