@@ -1,0 +1,44 @@
+_BASE_: ./Base.yaml
+
+OUTPUT_DIR: ./uniovseg_s1_point
+
+INPUT:
+  DATASET_MAPPER_NAME: sa1b
+  IMG_SIZE: 1024
+  CROP_SIZE: 1024
+  COLOR_AUG_SSD: true
+  MIN_AREA_RATIO: 0.0001
+  MAX_AREA_RATIO: 0.8
+
+MODEL:
+  WEIGHTS: ''
+  META_ARCHITECTURE: UniOVSeg_S1
+  # backbone part.
+  BACKBONE:
+    NAME: "CLIP"
+  OVSEG:
+    CLIP_MODEL_NAME: convnext_large_d_320
+    CLIP_PRETRAINED_WEIGHTS: ""
+    TRANSFORMER_DECODER_NAME: MultiScaleMaskDecoder
+    PROMPT_ENCODER_NAME: PromptEncoder
+    TRANSFORMER_ENC_LAYERS: 6
+    DEC_LAYERS: 10
+    MASK_WEIGHT: 2.0
+    DICE_WEIGHT: 1.0
+    IOU_WEIGHT: 1.0
+    PTS_PER_SIDE:
+      - 10
+      - 10
+    TEST:
+      PTS_PER_SIDE:
+        - 20
+        - 20
+      SEMANTIC_ON: false
+      INSTANCE_ON: false
+      PANOPTIC_ON: false
+      MASKCLS_ON: false
+      AUTOLABEL_ON: true
+      AUTOLABEL_SAVE: false
+      AUTOLABEL_TYPE: panoptic-point
+      OBJECT_MASK_THRESHOLD: 0.7
+      OVERLAP_THRESHOLD: 0.4

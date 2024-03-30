@@ -1,0 +1,25 @@
+cython
+scipy
+shapely
+timm
+h5py
+submitit
+scikit-image
+opencv-python-headless
+open_clip_torch
+progressbar
+tensorboard==2.13.0
+webdataset
+ftfy
+regex
+torchshow
+nltk
+lvis
+cityscapesscripts
+pyarrow
+fastparquet
+torchmetrics
+opencv-python
+ninja
+# git+https://github.com/facebookresearch/detectron2.git
+git+https://github.com/cocodataset/panopticapi.git
