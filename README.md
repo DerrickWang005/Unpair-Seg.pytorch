@@ -33,6 +33,7 @@ python inference.py \
 
 We also provide some test images under `./images/`.
 
+----
 If you use this codebase, or otherwise found our work valuable, please cite:
 ```
 @article{wang2024open,
