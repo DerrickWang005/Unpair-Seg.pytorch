@@ -32,3 +32,13 @@ python inference.py \
 ```
 
 We also provide some test images under `./images/`.
+
+If you use this codebase, or otherwise found our work valuable, please cite:
+```
+@article{wang2024open,
+  title={Open-Vocabulary Segmentation with Unpaired Mask-Text Supervision},
+  author={Wang, Zhaoqing and Xia, Xiaobo and Chen, Ziye and He, Xiao and Guo, Yandong and Gong, Mingming and Liu, Tongliang},
+  journal={arXiv preprint arXiv:2402.08960},
+  year={2024}
+}
+```
