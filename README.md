@@ -1,6 +1,6 @@
-# Uni-OVSeg: Open-Vocabulary Segmentation with Unpaired Mask-Text Supervision
+# Unpair-Seg: Open-Vocabulary Segmentation with Unpaired Mask-Text Supervision
 
-This repo contains the code for our paper [Uni-OVSeg](https://derrickwang005.github.io/Uni-OVSeg.pytorch/).
+This repo contains the code for our paper [UnpairSeg](https://derrickwang005.github.io/Unpair-Seg.pytorch/).
 It is a weakly supervised open-vocabulary segmentation framework that leverages unpaired mask-text pairs.
 
 <!-- Our code will be released soon! -->
@@ -18,7 +18,7 @@ It is a weakly supervised open-vocabulary segmentation framework that leverages 
 
 
 ## Inference
-The part provides a brief introduction of the usage of Uni-OVSeg.
+The part provides a brief introduction of the usage of Unpair-Seg.
 Please download the [checkpoint](https://drive.google.com/file/d/1LefU25dxFtuPQ5_oA-18_qwKbCQ8wiF9/view?usp=sharing) of stage one training.
 We provide `./demo/inference.py` for point-promptable segmentation.
 Run it with:
